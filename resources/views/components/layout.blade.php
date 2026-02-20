@@ -14,22 +14,31 @@
         <!-- Fonts -->
         
         <!-- Styles / Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> --}}
+        <link rel="stylesheet" href="{{ asset('assets/main.css') }}">
         
     </head>
 
     <body class="bg-black text-white">
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/anime/winter">Winter</a></li>
-                <li><a href="/anime/spring">Spring</a></li>
-                <li><a href="/anime/summer">Summer</a></li>
-                <li><a href="/anime/fall">Fall</a></li>
-            </ul>
-        </nav>
+        <div class="top-nav">
+            <div class="logo">
+                <a href="/">MyAniDB</a>
+            </div>
+            <div class="seasons">
+                <a href="/anime/winter">Winter</a>
+                <a href="/anime/spring">Spring</a>
+                <a href="/anime/summer">Summer</a>
+                <a href="/anime/fall">Fall</a>
+            </div>
+
+            
+        </div>
+        <span class="main-content">
         {{ $slot }}
+        </span>
     </body>
+    <footer>
+        <a href="/about">About Us</a>
+    </footer>
 
 </html>
