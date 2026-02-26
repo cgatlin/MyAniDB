@@ -22,8 +22,8 @@ class AniListAPIController extends Controller
         $year = $year ?? date('Y');
 
         $animes = $this->animes->seasonRequest($season, $year);
-        dd($animes);
-        return view('anime', ['season' => $season, 'year' => $year, 'animes' => $animes]);
+        // dd($animes);
+        return view('anime.season', ['season' => $season, 'year' => $year, 'animes' => $animes]);
     }
 
 
@@ -33,6 +33,9 @@ class AniListAPIController extends Controller
     public function show(string $id)
     {
         //
+        $anime = $this->animes->animeDetailRequest($id);
+
+        return view('anime.detail', ['anime' => $anime]);
     }
 
    

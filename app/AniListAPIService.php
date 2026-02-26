@@ -22,8 +22,6 @@ class AniListAPIService
         //
     }
 
-
-
     public function seasonRequest($season, $year, $page = 1)
     {
         // Here we define our query as a multi-line string
@@ -45,6 +43,16 @@ class AniListAPIService
                         english
                         native
                     }
+                    description(asHtml: false)
+                    format
+                    genres
+                    status
+                    bannerImage
+                    coverImage {
+                        medium
+                        large
+                        extraLarge
+                    }
                 }
             }
         }';
@@ -63,8 +71,6 @@ class AniListAPIService
             'query' => $query,
             'variables' => $variables,
         ]);
-
-
     
         $data = $response->json();
         // dd($response->successful(), $data);
@@ -77,7 +83,46 @@ class AniListAPIService
         return $animes;
     }
 
+    public function animeDetailRequest($id) 
+    {
+        $query = 'query ($id: Int) {
+            Media (id: $id, type: ANIME) {
+                id
+                title {
+                    romaji
+                    english
+                    native
+                }
+                description(asHtml: false)
+                format
+                genres
+                status
+                bannerImage
+                coverImage {
+                    extraLarge
+                }
+            }
+        }';
 
+        $variables = [
+            "id" => (int)$id,
+        ];
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ])->post('https://graphql.anilist.co', [
+            'query' => $query,
+            'variables' => $variables,
+        ]);
+    
+        $data = $response->json();
+        
+        $animes = $data['data']['Media'];
+
+        return $animes;
+
+    }
 
 
     
