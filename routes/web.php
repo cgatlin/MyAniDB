@@ -11,5 +11,7 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/anime/{season}/{year?}', [AniListAPIController::class, 'index']); 
+
 Route::get('/anime/{id}', [AniListAPIController::class, 'show']);
+Route::get('/{season}/{year?}', [AniListAPIController::class, 'index']); 
+

@@ -25,10 +25,10 @@
                 <a href="/">MyAniDB</a>
             </div>
             <div class="seasons">
-                <a href="/anime/winter/{{ date('Y') }}">Winter - <span>{{ date('Y') }}</span></a>
-                <a href="/anime/spring/{{ date('Y') }}">Spring - <span>{{ date('Y') }}</span></a>
-                <a href="/anime/summer/{{ date('Y') }}">Summer - <span>{{ date('Y') }}</span></a>
-                <a href="/anime/fall/{{ date('Y') }}">Fall - <span>{{ date('Y') }}</span></a>
+                <a href="/winter/{{ date('Y') }}">Winter - <span>{{ date('Y') }}</span></a>
+                <a href="/spring/{{ date('Y') }}">Spring - <span>{{ date('Y') }}</span></a>
+                <a href="/summer/{{ date('Y') }}">Summer - <span>{{ date('Y') }}</span></a>
+                <a href="/fall/{{ date('Y') }}">Fall - <span>{{ date('Y') }}</span></a>
             </div>
 
             
