@@ -53,6 +53,7 @@ class AniListAPIService
                         large
                         extraLarge
                     }
+                    isAdult
                 }
             }
         }';
