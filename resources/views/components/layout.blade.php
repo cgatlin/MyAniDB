@@ -21,14 +21,14 @@
         
     </head>
 
-    <body class="bg-black text-white">
+    <body class="text-white">
         <x-navbar />
         
-        <span class="main-content">
+        <span class="main-content text-center">
             {{ $slot }}
         </span>
     </body>
-    <footer>
+    <footer class="footer place-items-end p-4 bg-neutral text-neutral-content">
         <a href="/about">About Us</a>
     </footer>
 
