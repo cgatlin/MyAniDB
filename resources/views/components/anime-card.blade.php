@@ -4,7 +4,7 @@
 
     <div {{ $attributes->merge(['class' => 'card card-side bg-base-100 inline-grid grid-cols-2 shadow-sm']) }}>
     <figure class="cover">
-        <a href="/anime/{{ $anime['id'] }}">
+        <a href="/anime/{{ $anime['id'] }}" target="_blank">
         <img
         src="{{ $anime['coverImage']['large'] }}"
         alt="{{ $anime['title']['romaji'] }} Cover Image" 

@@ -19,7 +19,7 @@
                 <a class="btn btn-ghost text-xl">MyAniDB</a>
             </div>
             <div class="navbar-end hidden lg:flex">
-                <ul class="menu menu-horizontal px-1">
+                <ul class="menu menu-horizontal px-10">
                 <li>
                     <details>
                     <summary>Seasons</summary>
