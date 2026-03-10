@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
 use Illuminate\Support\Facades\Http;
@@ -7,13 +9,12 @@ use Illuminate\Support\Facades\Http;
 // Set global options for all HTTP requests
 Http::globalOptions([
     'curl' => [
-        CURLOPT_SSL_OPTIONS => CURLSSLOPT_NATIVE_CA
+        CURLOPT_SSL_OPTIONS => CURLSSLOPT_NATIVE_CA,
     ],
 ]);
 
 class AniListAPIService
 {
-   
     /**
      * Create a new class instance.
      */
@@ -60,9 +61,9 @@ class AniListAPIService
 
         // Define our query variables and values that will be used in the query request
         $variables = [
-            "season" => strtoupper($season),
-            "year" => $year,
-            "page" => $page,
+            'season' => strtoupper((string) $season),
+            'year' => $year,
+            'page' => $page,
         ];
 
         $response = Http::withHeaders([
@@ -72,19 +73,19 @@ class AniListAPIService
             'query' => $query,
             'variables' => $variables,
         ]);
-    
+
         $data = $response->json();
         // dd($response->successful(), $data);
         $animes = $data['data']['Page']['media'];
 
         if ($data['data']['Page']['pageInfo']['hasNextPage']) {
-            $animes = array_merge($animes, $this->seasonRequest($season, $year, $page + 1));
+            return array_merge($animes, $this->seasonRequest($season, $year, $page + 1));
         }
 
         return $animes;
     }
 
-    public function animeDetailRequest($id) 
+    public function animeDetailRequest($id)
     {
         $query = 'query ($id: Int) {
             Media (id: $id, type: ANIME) {
@@ -106,7 +107,7 @@ class AniListAPIService
         }';
 
         $variables = [
-            "id" => (int)$id,
+            'id' => (int) $id,
         ];
 
         $response = Http::withHeaders([
@@ -116,15 +117,10 @@ class AniListAPIService
             'query' => $query,
             'variables' => $variables,
         ]);
-    
-        $data = $response->json();
-        
-        $animes = $data['data']['Media'];
 
-        return $animes;
+        $data = $response->json();
+
+        return $data['data']['Media'];
 
     }
-
-
-    
 }
